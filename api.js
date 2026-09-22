@@ -12,7 +12,7 @@ const api = {
         // تحويل البيانات لتتوافق مع ما تتوقعه الواجهة
         return data.map(slot => ({
             ...slot,
-            available: slot.is_available // نطابق اسم المتغير مع الواجهة
+            available: slot.is_available
         }));
     },
 
@@ -28,28 +28,28 @@ const api = {
         return { ...data, available: data.is_available };
     },
 
-    // 3. حجز موعد
+    // 3. حجز موعد (باستخدام الدالة الآمنة على السيرفر)
     async bookSlot(id, userData) {
-        // أولاً: إضافة الحجز في جدول الحجوزات
-        const { error: bookingError } = await window.supabaseClient
-            .from('bookings')
-            .insert([{ 
-                slot_id: id, 
-                client_name: userData.name, 
-                client_email: userData.email 
-            }]);
+        // استدعاء الدالة على السيرفر مباشرة (RPC)
+        const { data, error } = await window.supabaseClient
+            .rpc('book_slot', {
+                p_slot_id: id,
+                p_client_name: userData.name,
+                p_client_email: userData.email
+            });
 
-        if (bookingError) throw new Error('حدث خطأ أثناء حفظ الحجز');
+        // لو حصل خطأ في الاتصال بالسيرفر
+        if (error) {
+            throw new Error('حدث خطأ في الاتصال بالسيرفر');
+        }
 
-        // ثانياً: تحديث حالة الموعد إلى "محجوز"
-        const { error: slotError } = await window.supabaseClient
-            .from('slots')
-            .update({ is_available: false })
-            .eq('id', id);
+        // لو السيرفر رجع فشل (الموعد محجوز بالفعل)
+        if (!data.success) {
+            throw new Error(data.error);
+        }
 
-        if (slotError) throw new Error('تم الحجز ولكن فشل تحديث حالة الموعد');
-
-        return { success: true };
+        // نجاح
+        return { success: true, bookingId: data.booking_id };
     }
 };
 
