@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مستشارك | استشارات الذكاء الاصطناعي للأعمال</title>
+    <title>مستشارك | نظام حجز متكامل للمستشارين والمدربين</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,16 @@
             theme: {
                 extend: {
                     fontFamily: { cairo: ['Cairo', 'sans-serif'] },
-                    animation: { 'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }
+                    animation: { 
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
                 }
             }
         }
@@ -30,92 +39,322 @@
     <div class="absolute top-[40%] left-[50%] translate-x-[-50%] w-[30%] h-[30%] rounded-full bg-cyan-600/10 blur-[120px] pointer-events-none"></div>
 
     <!-- شريط التنقل (Navbar) -->
-    <nav class="relative z-10 max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+    <nav class="relative z-50 max-w-6xl mx-auto px-6 py-5 flex justify-between items-center bg-white/0 backdrop-blur-sm">
         <div class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">مستشارك</div>
-        <div class="flex gap-4">
-            <a href="index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">الرئيسية</a>
-            <a href="login.html" class="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors">تسجيل الدخول للمسؤول</a>
+        <div class="hidden md:flex gap-8 items-center">
+            <a href="#features" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">مميزات النظام</a>
+            <a href="#how-it-works" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">كيف يعمل</a>
+            <a href="#pricing" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">الأسعار</a>
+            <a href="#booking-section" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">تجربة حية</a>
+            <a href="#pricing" class="px-5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-sm hover:from-indigo-500 hover:to-purple-500 transition-all">اشترِ الآن</a>
         </div>
     </nav>
 
     <!-- القسم الرئيسي (Hero Section) -->
-    <header class="relative z-10 max-w-5xl mx-auto px-6 pt-16 pb-24 text-center">
-        <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 glow-text leading-tight">
-            نُحول أعمالك إلى الجيل القادم..<br>
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400">
-                بحلول ذكاء اصطناعي عملية
-            </span>
-        </h1>
-        <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-medium mb-10">
-            نقدم استشارات تطبيقية للشركات والمؤسسات لدمج أدوات الذكاء الاصطناعي في العمليات اليومية، بأقل تكلفة وأعلى عائد.
-        </p>
-        <a href="#booking-section" class="inline-block px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg transition-all duration-300 hover:from-indigo-500 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/30 active:scale-95">
-            احجز استشارتك الآن
-        </a>
+    <header class="relative z-10 max-w-6xl mx-auto px-6 pt-16 pb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- النص -->
+            <div class="text-center lg:text-right">
+                <div class="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold mb-6">
+                    🚀 الحل الجاهز للمستشارين والمدربين في الوطن العربي
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 glow-text leading-tight">
+                    أطلق منصة استشاراتك
+                    <br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400">
+                        في 5 دقائق فقط
+                    </span>
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 font-medium mb-8">
+                    نظام حجز متكامل جاهز للاستخدام، مع لوحة تحكم احترافية وقاعدة بيانات سحابية. وفّر شهوراً من التطوير وتكاليف المبرمجين، وابدأ في استقبال حجوزاتك فوراً.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <a href="#pricing" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg transition-all duration-300 hover:from-indigo-500 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/30 active:scale-95">
+                        اشترِ النظام الآن
+                    </a>
+                    <a href="#booking-section" class="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-lg transition-all duration-300 hover:bg-white/10">
+                        جرب النسخة التجريبية
+                    </a>
+                </div>
+            </div>
+
+            <!-- الصورة -->
+            <div class="relative animate-float">
+                <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur-3xl opacity-30"></div>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80" 
+                     alt="نظام إدارة الحجوزات" 
+                     class="relative rounded-3xl border border-white/10 shadow-2xl w-full object-cover h-[400px] lg:h-[500px]">
+                <!-- شارة عائمة -->
+                <div class="absolute -bottom-6 -left-6 bg-[#0B1120]/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-2xl">⚡</div>
+                        <div>
+                            <div class="text-white font-bold">جاهز للعمل</div>
+                            <div class="text-slate-400 text-xs">خلال دقائق</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- قسم الخدمات (Services) - تم تحويل البطاقات لروابط -->
-    <section class="relative z-10 max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-black text-center mb-12 text-white">خدماتنا الاستشارية</h2>
+    <!-- شريط التقنيات (Tech Stack) - بديل شرعي عن الآراء الوهمية -->
+    <section class="relative z-10 max-w-6xl mx-auto px-6 py-12">
+        <div class="text-center mb-8">
+            <p class="text-slate-500 text-sm font-bold">مبني بأحدث التقنيات العالمية</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
+            <div class="text-center">
+                <div class="text-xl md:text-2xl font-black text-white">Supabase</div>
+                <div class="text-slate-400 text-xs mt-1 font-bold">قاعدة بيانات سحابية</div>
+            </div>
+            <div class="text-center">
+                <div class="text-xl md:text-2xl font-black text-white">Tailwind CSS</div>
+                <div class="text-slate-400 text-xs mt-1 font-bold">تصميم عصري</div>
+            </div>
+            <div class="text-center">
+                <div class="text-xl md:text-2xl font-black text-white">Vercel</div>
+                <div class="text-slate-400 text-xs mt-1 font-bold">استضافة فائقة السرعة</div>
+            </div>
+            <div class="text-center">
+                <div class="text-xl md:text-2xl font-black text-white">JavaScript</div>
+                <div class="text-slate-400 text-xs mt-1 font-bold">أداء عالي</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم مميزات النظام (Features) -->
+    <section id="features" class="relative z-10 max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-14">
+            <div class="text-indigo-400 font-bold text-sm mb-3">المميزات</div>
+            <h2 class="text-3xl md:text-5xl font-black mb-4 text-white">كل ما تحتاجه في نظام واحد</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">نظام متكامل مصمم خصيصاً لتلبية احتياجات المستشارين والمدربين</p>
+        </div>
+        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- خدمة 1 -->
-            <a href="#booking-section" class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                <div class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 text-2xl group-hover:scale-110 transition-transform">🤖</div>
-                <h3 class="text-lg font-bold mb-2">استشارات التحول الرقمي</h3>
-                <p class="text-sm text-slate-400">مساعدتك على دمج أدوات الذكاء الاصطناعي في عملياتك اليومية بسلاسة.</p>
-            </a>
+            <div class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                <div class="w-14 h-14 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-5 text-3xl group-hover:scale-110 transition-transform">📊</div>
+                <h3 class="text-lg font-bold mb-2">لوحة تحكم احترافية</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">إدارة كاملة لجميع الحجوزات من مكان واحد، مع إمكانية البحث والفرز.</p>
+            </div>
 
-            <!-- خدمة 2 -->
-            <a href="#booking-section" class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 mb-4 text-2xl group-hover:scale-110 transition-transform">⚙️</div>
-                <h3 class="text-lg font-bold mb-2">أتمتة العمليات</h3>
-                <p class="text-sm text-slate-400">بناء أنظمة تلقائية توفر وقت الموظفين وتقلل التكاليف التشغيلية.</p>
-            </a>
+            <div class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                <div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 mb-5 text-3xl group-hover:scale-110 transition-transform">🕐</div>
+                <h3 class="text-lg font-bold mb-2">حجز على مدار 24/7</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">عملاؤك يحجزون في أي وقت، بدون الحاجة للتواصل المباشر أو المكالمات.</p>
+            </div>
 
-            <!-- خدمة 3 -->
-            <a href="#booking-section" class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4 text-2xl group-hover:scale-110 transition-transform">💬</div>
-                <h3 class="text-lg font-bold mb-2">روبوتات الدردشة الذكية</h3>
-                <p class="text-sm text-slate-400">عملاء يفهمون احتياجات عملائك ويردون عليهم على مدار الساعة.</p>
-            </a>
+            <div class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                <div class="w-14 h-14 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 mb-5 text-3xl group-hover:scale-110 transition-transform">☁️</div>
+                <h3 class="text-lg font-bold mb-2">قاعدة بيانات سحابية</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">جميع البيانات محفوظة بشكل آمن على السحابة، يمكنك الوصول إليها من أي جهاز.</p>
+            </div>
 
-            <!-- خدمة 4 -->
-            <a href="#booking-section" class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4 text-2xl group-hover:scale-110 transition-transform">📊</div>
-                <h3 class="text-lg font-bold mb-2">تحليل البيانات بالذكاء الاصطناعي</h3>
-                <p class="text-sm text-slate-400">تحويل أرقام شركتك إلى قرارات ذكية تزيد الأرباح.</p>
-            </a>
+            <div class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                <div class="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 mb-5 text-3xl group-hover:scale-110 transition-transform">📱</div>
+                <h3 class="text-lg font-bold mb-2">تصميم متجاوب</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">يعمل بشكل مثالي على الجوال، التابلت، والكمبيوتر. تجربة مستخدم سلسة.</p>
+            </div>
 
-            <!-- خدمة 5 -->
-            <a href="#booking-section" class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 mb-4 text-2xl group-hover:scale-110 transition-transform">📈</div>
-                <h3 class="text-lg font-bold mb-2">استراتيجيات التسويق الذكي</h3>
-                <p class="text-sm text-slate-400">استخدام الـ AI لاستهداف عملائك بدقة ومضاعفة مبيعاتك.</p>
-            </a>
+            <div class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                <div class="w-14 h-14 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 mb-5 text-3xl group-hover:scale-110 transition-transform">🔒</div>
+                <h3 class="text-lg font-bold mb-2">حماية وأمان</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">نظام تسجيل دخول آمن للمسؤول، وحماية متقدمة للبيانات ضد الاختراق.</p>
+            </div>
 
-            <!-- خدمة 6 -->
-            <a href="#booking-section" class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 mb-4 text-2xl group-hover:scale-110 transition-transform">👥</div>
-                <h3 class="text-lg font-bold mb-2">تدريب الفرق</h3>
-                <p class="text-sm text-slate-400">تعليم فريق عمل العميل إزاي يستخدم أدوات الـ AI باحتراف.</p>
-            </a>
+            <div class="block group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                <div class="w-14 h-14 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 mb-5 text-3xl group-hover:scale-110 transition-transform">🎨</div>
+                <h3 class="text-lg font-bold mb-2">قابل للتخصيص بالكامل</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">يمكنك تغيير الألوان، الشعار، والنصوص بسهولة لتناسب هويتك التجارية.</p>
+            </div>
 
         </div>
     </section>
 
-    <!-- قسم الحجز (Booking) - اللي إحنا بنيناه -->
-    <section id="booking-section" class="relative z-10 max-w-4xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-black text-center mb-4 text-white">احجز استشارتك</h2>
-        <p class="text-center text-slate-400 mb-10">اختر الموعد المناسب لك من القائمة أدناه</p>
+    <!-- قسم كيف يعمل النظام (How it works) -->
+    <section id="how-it-works" class="relative z-10 max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-14">
+            <div class="text-indigo-400 font-bold text-sm mb-3">كيف يعمل؟</div>
+            <h2 class="text-3xl md:text-5xl font-black mb-4 text-white">ثلاث خطوات لبدء العمل</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">من الشراء إلى استقبال أول حجز في وقت قياسي</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- الخطوة 1 -->
+            <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center text-3xl font-black mx-auto mb-6">1</div>
+                <h3 class="text-xl font-bold mb-3">اشترِ النظام</h3>
+                <p class="text-slate-400 text-sm">اختر الترخيص المناسب لك، وسيتم تسليمك الكود المصدري كاملاً مع التوثيق.</p>
+            </div>
+            <!-- الخطوة 2 -->
+            <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-600 to-cyan-600 flex items-center justify-center text-3xl font-black mx-auto mb-6">2</div>
+                <h3 class="text-xl font-bold mb-3">اربط بياناتك</h3>
+                <p class="text-slate-400 text-sm">سنزودك بدليل خطوة بخطوة لربط النظام بحسابك على Supabase وتخصيصه.</p>
+            </div>
+            <!-- الخطوة 3 -->
+            <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-cyan-600 to-emerald-600 flex items-center justify-center text-3xl font-black mx-auto mb-6">3</div>
+                <h3 class="text-xl font-bold mb-3">ابدأ باستقبال الحجوزات</h3>
+                <p class="text-slate-400 text-sm">انشر رابط موقعك لعملائك، وشاهد الحجوزات تتوالى من لوحة التحكم.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم ماذا تحصل عليه (What you get) - بديل حقيقي عن الآراء الوهمية -->
+    <section class="relative z-10 max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-14">
+            <div class="text-indigo-400 font-bold text-sm mb-3">ماذا تحصل عليه؟</div>
+            <h2 class="text-3xl md:text-5xl font-black mb-4 text-white">حزمة كاملة جاهزة للتشغيل</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div class="flex items-start gap-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <div class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-2xl flex-shrink-0">💻</div>
+                <div>
+                    <h3 class="font-bold mb-1">الكود المصدري كاملاً</h3>
+                    <p class="text-sm text-slate-400">جميع ملفات HTML, CSS, JavaScript جاهزة للتعديل والتخصيص.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-2xl flex-shrink-0">📚</div>
+                <div>
+                    <h3 class="font-bold mb-1">دليل التشغيل المفصل</h3>
+                    <p class="text-sm text-slate-400">شرح خطوة بخطوة لكيفية ربط النظام بـ Supabase ونشره على Vercel.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center text-2xl flex-shrink-0">🎓</div>
+                <div>
+                    <h3 class="font-bold mb-1">دعم فني لمدة شهر</h3>
+                    <p class="text-sm text-slate-400">مساعدة مباشرة عبر البريد أو الواتساب لأي استفسار تقني.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center text-2xl flex-shrink-0">🔄</div>
+                <div>
+                    <h3 class="font-bold mb-1">تحديثات مجانية</h3>
+                    <p class="text-sm text-slate-400">احصل على أي تحسينات أو إضافات جديدة للنظام مجاناً لمدة 6 شهور.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الأسعار (Pricing) -->
+    <section id="pricing" class="relative z-10 max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-14">
+            <div class="text-indigo-400 font-bold text-sm mb-3">الأسعار</div>
+            <h2 class="text-3xl md:text-5xl font-black mb-4 text-white">اختر الترخيص المناسب لك</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">دفعة واحدة، ملكية كاملة، بدون اشتراكات شهرية</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <!-- الترخيص الأساسي -->
+            <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col">
+                <h3 class="text-xl font-bold mb-2">ترخيص فردي</h3>
+                <p class="text-slate-400 text-sm mb-6">مناسب للمستشار المستقل أو المدرب الشخصي</p>
+                <div class="text-4xl font-black mb-6">
+                    <span class="text-white">1,500</span>
+                    <span class="text-lg text-slate-400">ج.م</span>
+                </div>
+                <ul class="text-sm text-slate-300 space-y-3 mb-8 flex-1">
+                    <li class="flex items-center gap-2">✅ الكود المصدري كاملاً</li>
+                    <li class="flex items-center gap-2">✅ دليل التشغيل المفصل</li>
+                    <li class="flex items-center gap-2">✅ دعم فني لمدة شهر</li>
+                    <li class="flex items-center gap-2">✅ استخدام لموقع واحد</li>
+                </ul>
+                <a href="#booking-section" class="block text-center py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold transition-all">اشترِ الآن</a>
+            </div>
+
+            <!-- الترخيص الاحترافي (المميز) -->
+            <div class="relative bg-gradient-to-b from-indigo-600/20 to-purple-600/20 backdrop-blur-xl border-2 border-indigo-500/50 rounded-2xl p-8 flex flex-col transform md:scale-105 shadow-[0_0_50px_-12px_rgba(139,92,246,0.5)]">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full text-xs font-bold">الأكثر طلباً</div>
+                <h3 class="text-xl font-bold mb-2">ترخيص احترافي</h3>
+                <p class="text-slate-400 text-sm mb-6">للشركات والمكاتب الاستشارية</p>
+                <div class="text-4xl font-black mb-6">
+                    <span class="text-white">3,500</span>
+                    <span class="text-lg text-slate-400">ج.م</span>
+                </div>
+                <ul class="text-sm text-slate-300 space-y-3 mb-8 flex-1">
+                    <li class="flex items-center gap-2">✅ كل مميزات الترخيص الفردي</li>
+                    <li class="flex items-center gap-2">✅ تخصيص كامل للهوية البصرية</li>
+                    <li class="flex items-center gap-2">✅ استخدام لـ 3 مواقع</li>
+                    <li class="flex items-center gap-2">✅ دعم فني لمدة 3 شهور</li>
+                    <li class="flex items-center gap-2">✅ إضافة ميزات مخصصة</li>
+                </ul>
+                <a href="#booking-section" class="block text-center py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold hover:from-indigo-500 hover:to-purple-500 transition-all shadow-lg shadow-indigo-500/30">اشترِ الآن</a>
+            </div>
+
+            <!-- الترخيص المتقدم -->
+            <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col">
+                <h3 class="text-xl font-bold mb-2">ترخيص الشركات</h3>
+                <p class="text-slate-400 text-sm mb-6">لإعادة البيع أو الاستخدام المؤسسي</p>
+                <div class="text-4xl font-black mb-6">
+                    <span class="text-white">حسب الطلب</span>
+                </div>
+                <ul class="text-sm text-slate-300 space-y-3 mb-8 flex-1">
+                    <li class="flex items-center gap-2">✅ كل مميزات الترخيص الاحترافي</li>
+                    <li class="flex items-center gap-2">✅ حق إعادة البيع (White Label)</li>
+                    <li class="flex items-center gap-2">✅ استخدام غير محدود</li>
+                    <li class="flex items-center gap-2">✅ دعم فني لمدة سنة كاملة</li>
+                </ul>
+                <a href="#booking-section" class="block text-center py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold transition-all">تواصل معنا</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التجربة الحية (Live Demo) -->
+    <section id="booking-section" class="relative z-10 max-w-4xl mx-auto px-6 py-20">
+        <div class="text-center mb-10">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-4">
+                🎯 تجربة حية - جرب النظام بنفسك
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black mb-4 text-white">جرب النظام الآن</h2>
+            <p class="text-center text-slate-400 max-w-2xl mx-auto">
+                دي نسخة حية من النظام. اضغط "احجز الآن" وشوف بنفسك سهولة التجربة. لو عجبتك، تقدر تشتري النظام وتبدأ تستخدمه فوراً.
+            </p>
+        </div>
         
-        <div id="loading" class="text-center text-lg font-bold animate-pulse text-indigo-400 mb-6">جاري تحميل المواعيد...</div>
+        <div id="loading" class="text-center text-lg font-bold animate-pulse text-indigo-400 mb-6">جاري تحميل المواعيد التجريبية...</div>
         <div id="error-message" class="hidden text-center text-red-400 font-bold text-lg mb-6"></div>
 
         <div id="slots-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full hidden">
             <!-- Slots will be injected here by booking.js -->
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/5 mt-20">
+        <div class="max-w-6xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 mb-4">مستشارك</div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-md">
+                        نظام حجز متكامل جاهز للاستخدام، مصمم للمستشارين والمدربين في الوطن العربي. وفّر وقتك وتكاليف التطوير، وابدأ فوراً.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-white">روابط سريعة</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#features" class="hover:text-indigo-400 transition-colors">مميزات النظام</a></li>
+                        <li><a href="#pricing" class="hover:text-indigo-400 transition-colors">الأسعار</a></li>
+                        <li><a href="#booking-section" class="hover:text-indigo-400 transition-colors">تجربة حية</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-white">تواصل معنا</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>📧 hello@mustasharak.com</li>
+                        <li>📱 +20 100 000 0000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 text-center text-slate-500 text-xs">
+                © 2026 مستشارك. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
 
     <!-- السكربتات -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
