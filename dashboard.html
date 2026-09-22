@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | Vibecoding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { cairo: ['Cairo', 'sans-serif'] } } } }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#0B1120] text-white min-h-screen font-cairo p-6 selection:bg-indigo-500 selection:text-white">
+
+    <div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/10 blur-[150px] pointer-events-none"></div>
+
+    <nav class="relative z-10 max-w-5xl mx-auto flex justify-between items-center mb-10 bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-xl">
+        <h1 class="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">لوحة تحكم Vibecoding</h1>
+        <button onclick="window.auth.logout()" class="text-sm font-bold text-red-400 hover:text-red-300 transition-colors bg-red-500/10 px-4 py-2 rounded-xl border border-red-500/20">تسجيل خروج</button>
+    </nav>
+
+    <main class="relative z-10 max-w-5xl mx-auto">
+        <div id="loading" class="text-center text-indigo-400 font-bold animate-pulse mb-6">جاري تحميل الحجوزات...</div>
+        <div id="error-message" class="hidden text-center text-red-400 font-bold mb-6"></div>
+        <div id="bookings-container" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const loading = document.getElementById('loading');
+            const errorMsg = document.getElementById('error-message');
+            const container = document.getElementById('bookings-container');
+
+            // 1. التأكد إن المستخدم مسجل دخول
+            const { data: { session } } = await window.supabaseClient.auth.getSession();
+            if (!session) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // 2. جلب الحجوزات وعرضها
+            try {
+                const bookings = await window.auth.getBookings();
+                loading.classList.add('hidden');
+                container.classList.remove('hidden');
+
+                if (bookings.length === 0) {
+                    container.innerHTML = '<p class="text-slate-400 text-center col-span-full">لا توجد حجوزات حالياً.</p>';
+                    return;
+                }
+
+                let html = '';
+                bookings.forEach(booking => {
+                    const slotInfo = booking.slots ? `${booking.slots.day} - ${booking.slots.time}` : 'موعد غير معروف';
+                    html += `
+                        <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-lg font-bold text-white">${booking.client_name}</h3>
+                                    <p class="text-sm text-slate-400" dir="ltr">${booking.client_email}</p>
+                                </div>
+                                <span class="px-3 py-1 text-[10px] font-bold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">${booking.status}</span>
+                            </div>
+                            <div class="bg-white/[0.02] border border-white/5 rounded-xl p-3 text-center">
+                                <span class="text-slate-300 font-bold text-sm">${slotInfo}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+
+            } catch (err) {
+                loading.classList.add('hidden');
+                errorMsg.textContent = err.message;
+                errorMsg.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
